@@ -108,6 +108,7 @@ public class OrderFormPage extends CommonMethods {
 			//address
 			try {
 				if(address.isDisplayed()) {
+					address.clear();
 					address.sendKeys("Bhasani Hall,Jahangirnagar University,Savar" );
 					sleep();
 				}

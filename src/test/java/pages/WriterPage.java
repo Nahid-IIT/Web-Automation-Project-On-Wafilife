@@ -6,6 +6,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -28,8 +29,16 @@ public class WriterPage extends CommonMethods {
 	@FindBy(xpath = "//body/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/ul[1]/li[5]/a[1]/span[1]") WebElement writerOption;
 	@FindBy(xpath = "//h3[contains(text(),'M. Shamim Kaiser')]") WebElement writerName;
 	@FindBy(xpath = "//body/div[2]/div[3]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[2]/div[3]/ul[1]/li[1]/div[1]/div[1]/a[1]") WebElement bookDetails;
-	@FindBy(xpath = "//body/div[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/form[1]/div[2]/button[2]") WebElement orderButton;
-	@FindBy(xpath = "//a[@title='checkout']") WebElement orderCompleteButton;
+	
+	@FindBy (xpath = "//body/div[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/form[1]/div[2]/button[2]")WebElement orderButton;
+	
+	@FindBys({ 
+	 
+	  @FindBy ( xpath  = "//span[contains(text(),'অর্ডার সম্পন্ন করুন')]" ),
+	  @FindBy(	xpath = "//a[@title='checkout']" ),
+	  @FindBy(	xpath = "//div/a[@title='checkout']" )
+	 
+	}) WebElement orderCompleteButton;
 
 	
 	public void writerTest() throws IOException {
@@ -68,7 +77,7 @@ public class WriterPage extends CommonMethods {
 //					js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 //			        Thread.sleep(3000);
 					writerName.click();
-					sleep(2000);
+					sleep(3000);
 					test.pass("<p style=\"color:#85BC63; font-size:13px\"><b>Selected Writer is displayed successfully.</b></p>");
 					String screenShotPath = GetScreenShot.capture(PageDriver.getCurrentDriver(), "writerNamePass");
 					String dest = System.getProperty("user.dir") + "\\screenshots\\" + "writerNamePass.png";
@@ -115,7 +124,8 @@ public class WriterPage extends CommonMethods {
 					
 				if(orderButton.isDisplayed()) {
 					orderButton.click();
-					sleep(2000);
+					sleep(4000);
+					//orderCompleteButton.click();
 					test.pass("<p style=\"color:#85BC63; font-size:13px\"><b>Order Button  is displayed successfully.</b></p>");
 					String screenShotPath = GetScreenShot.capture(PageDriver.getCurrentDriver(), "orderButtonPass");
 					String dest = System.getProperty("user.dir") + "\\screenshots\\" + "orderButtonPass.png";
